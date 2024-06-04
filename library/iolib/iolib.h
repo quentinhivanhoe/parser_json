@@ -13,5 +13,9 @@
 /// @return line
 char *my_getline(int fd);
 
+/// @brief get the content of the file
+/// @param pathname the path/name of the file
+/// @return the content of the file
+char *my_getfile(char *pathname);
 
 #endif /* !IOLIB_H_ */

@@ -8,6 +8,9 @@
 
 int main(void)
 {
-    my_printf("JSON parser in C\n");
+    char *str = my_getfile("simple.json");
+
+    my_printf("[%s]\n", str);
+    mem_handler(NULL, DUMP);
     return 0;
 }

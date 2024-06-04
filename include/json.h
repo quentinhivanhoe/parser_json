@@ -10,8 +10,7 @@
 
 typedef struct json_s {
     char *key;
-    char **value;
-    json_t **sub_json;
+    char *value;
 } json_t;
 
 
