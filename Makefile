@@ -9,13 +9,13 @@ CC	=	gcc
 
 MAIN	=	main.c
 
-EXEC 	=	lib.out
+EXEC 	=	parser_json
 
-CS 		=	./coding-style/coding-style.sh
+CS 		=	./coding_style/coding-style.sh
 
-LOG		=	coding-style/report/coding-style-reports.log
+LOG		=	./coding_style/coding-style-reports.log
 
-REPORTS =	coding-style/report/
+REPORTS =	./coding_style/
 
 SRC	=	$(wildcard library/memlib/*.c) 		\
 		$(wildcard library/arraylib/*.c) 	\
