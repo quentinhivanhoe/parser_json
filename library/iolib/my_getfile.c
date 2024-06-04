@@ -22,5 +22,6 @@ char *my_getfile(char *pathname)
     while (read(fd, buffer, 1))
         content = my_strappend(content, buffer[0]);
     content = my_strappend(content, '\0');
+    close(fd);
     return content;
 }
