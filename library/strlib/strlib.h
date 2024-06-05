@@ -178,4 +178,11 @@ int my_strstr(char *str, char *tok, bool sensitive);
 /// @return a cleaned string
 char *clean_str(char *str, char delim);
 
+/// @brief duplicate a part of string
+/// @param str the string to duplicate
+/// @param start the start of the part
+/// @param end the end of the part
+/// @return the selected part
+char *str_select(char *str, char start, char end);
+
 #endif /* !STRLIB_H_ */

@@ -11,8 +11,9 @@ int main(void)
 {
     char *str = my_getfile("toto.json");
     char *clean = clean_str(str, ' ');
+    char *select = str_select(clean, '"', '"');
 
-    printf("[%s]\n", clean);
+    printf("[%s]\n", select);
     mem_handler(NULL, DUMP);
     return 0;
 }
