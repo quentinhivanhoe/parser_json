@@ -172,4 +172,10 @@ char *my_str_lower(char *str);
 /// @return true if tok is in, else false
 int my_strstr(char *str, char *tok, bool sensitive);
 
+/// @brief clean a string
+/// @param str the string to parse
+/// @param delim the element to delete
+/// @return a cleaned string
+char *clean_str(char *str, char delim);
+
 #endif /* !STRLIB_H_ */

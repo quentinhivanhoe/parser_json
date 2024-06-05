@@ -9,11 +9,10 @@
 
 int main(void)
 {
-    char *str = my_getfile("simple.json");
-    char **arr = my_str_to_word_array(str, '\n');
+    char *str = my_getfile("toto.json");
+    char *clean = clean_str(str, ' ');
 
-    for (unsigned int i = 0; arr[i]; i++)
-        printf("[%s]\n", arr[i]);
+    printf("[%s]\n", clean);
     mem_handler(NULL, DUMP);
     return 0;
 }
