@@ -8,10 +8,20 @@
 #include "../include/lib.h"
 #include <stdio.h>
 
+get_value_t get_value[] = {
+    {INT, &get_int_value},
+    {STR, &get_str_value},
+    {BOOL, &get_bool_value},
+    {ARRAY, &get_array_value},
+    {JSON, &get_json_value},
+    {ERROR, NULL},
+};
+
 json_t *create_node(json_t *prev, char *str)
 {
     json_t *node = NULL;
 
+    printf("str : [%s]\n\v", str);
     if (!str || !(*str) || (*str) == '}')
         return NULL;
     node = my_malloc(sizeof(json_t));
@@ -19,14 +29,9 @@ json_t *create_node(json_t *prev, char *str)
         str += 2;
     node->prev = prev;
     node->type = get_value_type(str);
-    if (node->type == INT)
-        get_int_value(node, &str);
-    if (node->type == BOOL)
-        get_bool_value(node, &str);
-    if (node->type == STR)
-        get_str_value(node, &str);
-    if (node->type == ARRAY)
-        get_array_value(node, &str);
+    for (unsigned int i = 0; get_value[i].get_func != NULL; i++)
+        if (node->type == get_value[i].type)
+            get_value[i].get_func(node, &str);
     node->next = create_node(node, str);
     return node;
 }

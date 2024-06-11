@@ -36,6 +36,11 @@ typedef struct json_s {
     struct json_s *prev;
 } json_t;
 
+typedef struct get_value_s {
+    node_t type;
+    json_t *(*get_func) (json_t *, char **);
+} get_value_t;
+
 /// @brief get the type of the value of the key
 /// @param str the key and the value
 /// @return the type
@@ -80,5 +85,11 @@ array_t *create_array(char **str, int nb_value, int index);
 /// @brief ahjajhjdnjnjkns
 /// @param json ,qdcsncdslkndcsjkndscjk
 void pretty_printer_test(json_t *json);
+
+/// @brief d
+/// @param node d
+/// @param str d
+/// @return d
+json_t *get_json_value(json_t *node, char **str);
 
 #endif /* !JSON_H_ */

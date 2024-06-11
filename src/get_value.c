@@ -66,6 +66,21 @@ json_t *get_bool_value(json_t *node, char **str)
     return node;
 }
 
+json_t *get_json_value(json_t *node, char **str)
+{
+    char *value = NULL;
+    int next = 0;
+
+    if (!node || !(*str))
+        return NULL;
+    value = str_select((*str), '\n', '}');
+    next = my_strstr((*str), "}", true) + 2;
+    next = ((*str)[next] == '\n') ? (next + 1) : (next);
+    node->json_value = create_node(node, value);
+    (*str) += next;
+    return node;
+}
+
 json_t *get_array_value(json_t *node, char **str)
 {
     int nb_value = 0;

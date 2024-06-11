@@ -36,7 +36,7 @@ void pretty_printer_test(json_t *json)
         if (json->type == ARRAY)
             array_printer(json->array_value);
         if (json->type == JSON)
-            pretty_printer_test(json->next);
+            pretty_printer_test(json->json_value);
         json = json->next;
     }
 }
