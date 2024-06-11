@@ -14,6 +14,7 @@ json_t *get_int_value(json_t *node, char **str)
 
     if (!node || !(*str))
         return NULL;
+    node->key = str_select((*str), '"', '"');
     value = str_select((*str), ':', ',');
     next = my_strstr((*str), "\n", true);
     if (!value)
@@ -33,6 +34,7 @@ json_t *get_str_value(json_t *node, char **str)
     if (!node || !(*str))
         return NULL;
     next = my_strstr((*str), "\n", true);
+    node->key = str_select((*str), '"', '"');
     if (my_strocc((*str), ':') < 1)
         node->str_value = str_select((*str), '"', '"');
     else {
@@ -53,6 +55,7 @@ json_t *get_bool_value(json_t *node, char **str)
     if (!node || !(*str))
         return NULL;
     value = str_select((*str), ':', ',');
+    node->key = str_select((*str), '"', '"');
     if (!value)
         value = str_select((*str), ':', '\n');
     if (!value)
@@ -73,6 +76,7 @@ json_t *get_json_value(json_t *node, char **str)
 
     if (!node || !(*str))
         return NULL;
+    node->key = str_select((*str), '"', '"');
     value = str_select((*str), '\n', '}');
     next = my_strstr((*str), "}", true) + 2;
     next = ((*str)[next] == '\n') ? (next + 1) : (next);
@@ -89,6 +93,7 @@ json_t *get_array_value(json_t *node, char **str)
 
     if (!node || !(*str))
         return NULL;
+    node->key = str_select((*str), '"', '"');
     value = str_select((*str), '\n', ']');
     nb_value = my_strocc(value, '\n');
     next = my_strstr((*str), "]", true) + 2;

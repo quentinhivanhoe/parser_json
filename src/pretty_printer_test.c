@@ -25,6 +25,7 @@ void array_printer(array_t **array)
 void pretty_printer_test(json_t *json)
 {
     while (json) {
+        printf("key : [%s] --- value : ", json->key);
         if (json->type == STR)
             printf("[%s]\n", json->str_value);
         if (json->type == INT)

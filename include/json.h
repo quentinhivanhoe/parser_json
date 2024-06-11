@@ -26,6 +26,7 @@ typedef struct array_s {
 } array_t;
 
 typedef struct json_s {
+    char *key;
     node_t type;
     long int int_value;
     char *str_value;
