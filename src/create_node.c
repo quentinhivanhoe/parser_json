@@ -25,6 +25,8 @@ json_t *create_node(json_t *prev, char *str)
         get_bool_value(node, &str);
     if (node->type == STR)
         get_str_value(node, &str);
+    if (node->type == ARRAY)
+        get_array_value(node, &str);
     node->next = create_node(node, str);
     return node;
 }

@@ -20,7 +20,7 @@ typedef enum node_type {
 
 typedef struct array_s {
     node_t type;
-    long int int_value;
+    int int_value;
     char *str_value;
     bool bool_value;
 } array_t;
@@ -30,7 +30,7 @@ typedef struct json_s {
     long int int_value;
     char *str_value;
     bool bool_value;
-    array_t *array_value;
+    array_t **array_value;
     struct json_s *json_value;
     struct json_s *next;
     struct json_s *prev;
@@ -63,5 +63,22 @@ json_t *get_bool_value(json_t *node, char **str);
 /// @param str the json stringify
 /// @return the current node
 json_t *get_str_value(json_t *node, char **str);
+
+/// @brief if the value is type of `ARRAY` so it will get the value
+/// @param node the nod eto complete
+/// @param str the json stringify
+/// @return the current node
+json_t *get_array_value(json_t *node, char **str);
+
+/// @brief nklsqcnl c
+/// @param str c,ncsn,;cdns
+/// @param nb_value ,klcldq,ldc
+/// @param index njljqcnckl
+/// @return nknlcdnlkcds,
+array_t *create_array(char **str, int nb_value, int index);
+
+/// @brief ahjajhjdnjnjkns
+/// @param json ,qdcsncdslkndcsjkndscjk
+void pretty_printer_test(json_t *json);
 
 #endif /* !JSON_H_ */

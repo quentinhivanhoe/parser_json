@@ -8,23 +8,13 @@
 #include "include/json.h"
 #include <stdio.h>
 
-int main(void)
+int main(int ac, char **av)
 {
-    char *str = my_getfile("simple.json");
+    char *str = my_getfile(av[1]);
     char *clean = clean_str(str, ' ');
     json_t *json = create_node(NULL, clean);
 
-    while (json) {
-        if (json->type == STR)
-            printf("[%s]\n", json->str_value);
-        if (json->type == INT)
-            printf("[%li]\n", json->int_value);
-        if (json->type == BOOL && json->bool_value)
-            printf("True\n");
-        if (json->type == BOOL && !json->bool_value)
-            printf("False\n");
-        json = json->next;
-    }
+    pretty_printer_test(json);
     mem_handler(NULL, DUMP);
-    return 0;
+    return ac;
 }

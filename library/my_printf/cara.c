@@ -42,6 +42,5 @@ int my_putnbr(int nb)
         div /= 10;
         digit -= 1;
     }
-    cmp += write(1, "\n", 1);
     return cmp;
 }
