@@ -20,10 +20,13 @@ get_value_t get_value[] = {
 json_t *init_node(json_t *prev, char *str)
 {
     json_t *node = NULL;
+    static int depth = 0;
 
     node = my_malloc(sizeof(json_t));
     node->type = get_value_type(str);
     node->prev = prev;
+    node->depth = depth;
+    depth = (node->type == JSON) ? (depth + 1) : (depth);
     if (node->type != STR)
         node->str_value = NULL;
     if (node->type != INT)
@@ -32,7 +35,7 @@ json_t *init_node(json_t *prev, char *str)
         node->bool_value = false;
     if (node->type != ARRAY)
         node->array_value = NULL;
-    if (node->type != ARRAY)
+    if (node->type != JSON)
         node->json_value = NULL;
     return node;
 }
