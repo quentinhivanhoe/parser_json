@@ -107,4 +107,15 @@ void print_json(json_t *json);
 /// @param json the json object
 void print_value(json_t *json);
 
+/// @brief d
+/// @param node d
+/// @param type d
+void init_value(json_t *node);
+
+/// @brief d
+/// @param json d
+/// @param path d
+/// @return d
+json_t *get_key(json_t *json, char *path);
+
 #endif /* !JSON_H_ */
