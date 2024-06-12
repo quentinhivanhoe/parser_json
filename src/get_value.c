@@ -78,7 +78,8 @@ json_t *get_json_value(json_t *node, char **str)
         return NULL;
     node->key = str_select((*str), '"', '"');
     value = str_select((*str), '\n', '}');
-    next = my_strstr((*str), "}", true) + 2;
+    next = my_strstr((*str), "}", true);
+    next = (next == -1) ? (my_strlen((*str))) : (next + 2);
     next = ((*str)[next] == '\n') ? (next + 1) : (next);
     node->json_value = create_node(node, value);
     (*str) += next;

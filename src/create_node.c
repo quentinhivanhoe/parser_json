@@ -17,13 +17,15 @@ get_value_t get_value[] = {
     {ERROR, NULL},
 };
 
-json_t *init_node(json_t *prev, char *str)
+json_t *init_node(json_t *prev, char *str, int *depth)
 {
     json_t *node = NULL;
 
     node = my_malloc(sizeof(json_t));
     node->type = get_value_type(str);
     node->prev = prev;
+    node->depth = (*depth);
+    (*depth) = (node->type == JSON) ? ((*depth) + 1) : ((*depth));
     if (node->type != STR)
         node->str_value = NULL;
     if (node->type != INT)
@@ -40,12 +42,15 @@ json_t *init_node(json_t *prev, char *str)
 json_t *create_node(json_t *prev, char *str)
 {
     json_t *node = NULL;
+    static int depth = 0;
 
-    if (!str || !(*str) || (*str) == '}')
+    if (!str || !(*str) || (*str) == '}') {
+        depth -= 1;
         return NULL;
+    }
     if (str[0] == '{')
         str += 2;
-    node = init_node(prev, str);
+    node = init_node(prev, str, &depth);
     for (unsigned int i = 0; get_value[i].get_func != NULL; i++)
         if (node->type == get_value[i].type)
             get_value[i].get_func(node, &str);

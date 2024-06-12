@@ -15,9 +15,10 @@ char *str_select(char *str, char start, char end)
 
     if (!str)
         return NULL;
-    if (!my_strocc(str, start) || !my_strocc(str, end))
-        return NULL;
-    for (; str[index] != start; index++);
+    if (my_strocc(str, start))
+        for (; str[index] != start; index++);
+    if (!my_strocc(str, end))
+        end = '\0';
     select = my_strduptil(str + (index + 1), end);
     return select;
 }
