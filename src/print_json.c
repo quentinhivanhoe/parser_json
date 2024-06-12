@@ -40,3 +40,24 @@ void print_info(json_t *json)
     }
     json = save_ptr;
 }
+
+void print_json(json_t *json)
+{
+    json_t *save_ptr = NULL;
+
+    if (!json)
+        return;
+    save_ptr = json;
+    my_printf("{\n");
+    while (json) {
+        for (int i = 0; i < (2 *(json->depth + 1)); i++)
+            my_printf(" ");
+        my_printf("\"%s\" : ", json->key);
+        print_value(json);
+        json = json->next;
+    }
+    for (int i = 0; i < (2 * save_ptr->depth); i++)
+        my_printf(" ");
+    my_printf("}");
+    json = save_ptr;
+}

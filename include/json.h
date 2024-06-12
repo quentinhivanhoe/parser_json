@@ -94,12 +94,17 @@ void pretty_printer_test(json_t *json);
 /// @return d
 json_t *get_json_value(json_t *node, char **str);
 
-/// @brief print all the key of the JSON
-/// @param json the json object to parse
-void print_key(json_t *json);
-
 /// @brief print info about the json object
 /// @param json the json object
 void print_info(json_t *json);
+
+/// @brief print the json object
+/// @param json the json object
+void print_json(json_t *json);
+
+
+/// @brief print value of the json object
+/// @param json the json object
+void print_value(json_t *json);
 
 #endif /* !JSON_H_ */
