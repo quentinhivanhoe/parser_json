@@ -14,7 +14,7 @@ int main(int ac, char **av)
     char *clean = clean_str(str, ' ');
     json_t *json = create_node(NULL, clean);
 
-    print_key(json);
+    print_info(json);
     mem_handler(NULL, DUMP);
     return ac;
 }

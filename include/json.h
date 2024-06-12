@@ -98,4 +98,8 @@ json_t *get_json_value(json_t *node, char **str);
 /// @param json the json object to parse
 void print_key(json_t *json);
 
+/// @brief print info about the json object
+/// @param json the json object
+void print_info(json_t *json);
+
 #endif /* !JSON_H_ */
