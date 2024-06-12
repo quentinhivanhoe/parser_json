@@ -53,7 +53,7 @@ CFLAGS	=	-W -Wall -Wextra -Werror
 all: $(LIB_PATH) $(OBJ)
 	$(CC) -g3 $(MAIN) $(OBJ) $(LIB_FLAGS) $(CFLAGS) -o $(EXEC)
 
-all: $(LIB_PATH)
+debug: $(LIB_PATH)
 	$(CC) -g3 $(MAIN) $(SRC) $(LIB_FLAGS) $(CFLAGS) -o $(EXEC)
 
 $(LIB_PATH): $(OBJ_LIB)
