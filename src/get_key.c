@@ -55,5 +55,5 @@ json_t *get_key(json_t *json, char *path)
         else
             return get_key(json->json_value, path + next);
     }
-        return get_key(json->next, path);
+    return get_key(json->next, path);
 }
