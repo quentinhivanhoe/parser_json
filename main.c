@@ -4,7 +4,6 @@
 ** File description:
 ** simple json parser in c
 */
-#include "include/lib.h"
 #include "include/json.h"
 #include <stdio.h>
 
@@ -17,6 +16,5 @@ int main(int ac, char **av)
     print_info(json);
     printf("\n\n");
     print_json(json);
-    mem_handler(NULL, DUMP);
     return ac;
 }

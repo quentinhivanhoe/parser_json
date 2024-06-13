@@ -4,7 +4,7 @@
 ** File description:
 ** find a string into another one
 */
-#include "strlib.h"
+#include "../include/json.h"
 
 int my_strstr(char *str, char *tok, bool sensitive)
 {

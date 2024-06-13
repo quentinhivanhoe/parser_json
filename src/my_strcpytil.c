@@ -4,7 +4,7 @@
 ** File description:
 ** copy as tring until a character
 */
-#include "strlib.h"
+#include "../include/json.h"
 
 int my_strcpytil(char *dest, char *src, char c)
 {

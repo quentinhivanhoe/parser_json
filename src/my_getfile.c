@@ -4,8 +4,10 @@
 ** File description:
 ** get the content of the file
 */
-#include "../../include/lib.h"
+
+#include "../include/json.h"
 #include <fcntl.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 char *my_getfile(char *pathname)

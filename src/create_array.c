@@ -5,7 +5,7 @@
 ** create an array object
 */
 #include "../include/json.h"
-#include "../include/lib.h"
+#include <stdlib.h>
 
 void array_is_str(char *value, array_t *array)
 {
@@ -49,7 +49,7 @@ array_t *create_array(char **str, int nb_value, int index)
 
     if (!(*str))
         return NULL;
-    array = my_malloc(sizeof(array_t));
+    array = malloc(sizeof(array_t));
     line = my_strduptil((*str), '\n');
     next = my_strlen(line);
     if (index < (nb_value - 1)) {

@@ -4,8 +4,8 @@
 ** File description:
 ** duplicate a string until a charcater
 */
-#include "strlib.h"
-#include "../memlib/memlib.h"
+#include "../include/json.h"
+#include <stdlib.h>
 
 char *my_strduptil(char *str, char c)
 {
@@ -15,7 +15,7 @@ char *my_strduptil(char *str, char c)
     if (!str)
         return NULL;
     len = my_strlen(str);
-    dup = my_malloc(sizeof(char) * (len + 1));
+    dup = malloc(sizeof(char) * (len + 1));
     if (my_strcpytil(dup, str, c) < 0)
         return NULL;
     return dup;

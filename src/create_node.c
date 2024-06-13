@@ -5,7 +5,7 @@
 ** create a node of our json object
 */
 #include "../include/json.h"
-#include "../include/lib.h"
+#include <stdlib.h>
 #include <stdio.h>
 
 get_value_t get_value[] = {
@@ -35,7 +35,7 @@ json_t *init_node(json_t *prev, char *str, int *depth)
 {
     json_t *node = NULL;
 
-    node = my_malloc(sizeof(json_t));
+    node = malloc(sizeof(json_t));
     node->type = get_value_type(str);
     node->prev = prev;
     node->depth = (*depth);

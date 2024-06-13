@@ -5,7 +5,6 @@
 ** get the type of the key value
 */
 #include "../include/json.h"
-#include "../library/strlib/strlib.h"
 
 node_t get_value_type(char *str)
 {

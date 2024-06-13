@@ -4,8 +4,8 @@
 ** File description:
 ** clean a string
 */
-#include "strlib.h"
-#include "../memlib/memlib.h"
+#include "../include/json.h"
+#include <stdlib.h>
 #include <stddef.h>
 
 int get_len_clean_str(char *str, char tok)
@@ -31,7 +31,7 @@ char *clean_str(char *str, char delim)
     len = get_len_clean_str(str, delim);
     if (len == 0)
         return NULL;
-    clean = my_malloc(sizeof(char *) * (len + 1));
+    clean = malloc(sizeof(char *) * (len + 1));
     if (clean == NULL)
         return NULL;
     for (unsigned int i = 0; str[i]; i++) {

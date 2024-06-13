@@ -4,7 +4,7 @@
 ** File description:
 ** copy a string
 */
-#include "strlib.h"
+#include "../include/json.h"
 
 int my_strcpy(char *dest, char *src)
 {

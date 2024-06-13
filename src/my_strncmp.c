@@ -1,17 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** personnal strcmp
+** personal strncmp
 ** File description:
-** compare two strings
+** compare n bytes of two strings
 */
+#include "../include/json.h"
 
-#include "strlib.h"
-#include "stdbool.h"
-
-int my_strcmp(char *s1, char *s2, bool sensitive)
+int my_strncmp(char *s1, char *s2, int nbyte, bool sensitive)
 {
-    int len = 0;
-
     if (!s1)
         return __INT_MAX__;
     if (!s2)
@@ -20,10 +16,9 @@ int my_strcmp(char *s1, char *s2, bool sensitive)
         s1 = my_str_upper(s1);
         s2 = my_str_upper(s2);
     }
-    len = my_strlen(s1) - my_strlen(s2);
-    if (len != 0)
-        return len;
-    for (int i = 0; s1[i] != '\0'; i++)
+    if ((my_strlen(s1) < nbyte) || (my_strlen(s2) < nbyte))
+        return my_strlen(s1) - my_strlen(s2);
+    for (int i = 0; i < nbyte; i++)
         if ((s1[i] - s2[i]) != 0)
             return s1[i] - s2[i];
     return 0;

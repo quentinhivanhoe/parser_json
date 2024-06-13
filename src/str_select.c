@@ -5,8 +5,7 @@
 ** copy a part of a string
 */
 #include <stddef.h>
-#include "strlib.h"
-#include <stdio.h>
+#include "../include/json.h"
 
 char *str_select(char *str, char start, char end)
 {

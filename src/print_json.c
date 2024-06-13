@@ -5,20 +5,20 @@
 ** print json object
 */
 #include "../include/json.h"
-#include "../include/lib.h"
+#include <stdio.h>
 
 void print_type(node_t type)
 {
     if (type == INT)
-        my_printf("[INT]");
+        printf("[INT]");
     if (type == STR)
-        my_printf("[STR]");
+        printf("[STR]");
     if (type == BOOL)
-        my_printf("[BOOL]");
+        printf("[BOOL]");
     if (type == ARRAY)
-        my_printf("[ARRAY]");
+        printf("[ARRAY]");
     if (type == JSON)
-        my_printf("[JSON]");
+        printf("[JSON]");
 }
 
 void print_info(json_t *json)
@@ -30,10 +30,10 @@ void print_info(json_t *json)
     save_ptr = json;
     while (json) {
         for (int i = 0; i < (2 *(json->depth + 1)); i++)
-            my_printf(" ");
-        my_printf("[%s] : ", json->key);
+            printf(" ");
+        printf("[%s] : ", json->key);
         print_type(json->type);
-        my_printf("\n");
+        printf("\n");
         if (json->type == JSON)
             print_info(json->json_value);
         json = json->next;
@@ -48,16 +48,16 @@ void print_json(json_t *json)
     if (!json)
         return;
     save_ptr = json;
-    my_printf("{\n");
+    printf("{\n");
     while (json) {
         for (int i = 0; i < (2 *(json->depth + 1)); i++)
-            my_printf(" ");
-        my_printf("\"%s\" : ", json->key);
+            printf(" ");
+        printf("\"%s\" : ", json->key);
         print_value(json);
         json = json->next;
     }
     for (int i = 0; i < (2 * save_ptr->depth); i++)
-        my_printf(" ");
-    my_printf("}");
+        printf(" ");
+    printf("}");
     json = save_ptr;
 }
