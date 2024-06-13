@@ -6,6 +6,7 @@
 */
 #include "../include/json.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void array_is_str(char *value, array_t *array)
 {
@@ -23,7 +24,7 @@ void array_is_int(char *value, array_t *array)
 
 void array_is_bool(char *value, array_t *array)
 {
-    array->str_value = str_select(value, '"', '"');
+    array->str_value = NULL;
     array->int_value = 0;
     if (!my_strcmp(value, "true", false))
         array->bool_value = true;
@@ -50,14 +51,14 @@ array_t *create_array(char **str, int nb_value, int index)
     if (!(*str))
         return NULL;
     array = malloc(sizeof(array_t));
-    line = my_strduptil((*str), '\n');
-    next = my_strlen(line);
-    if (index < (nb_value - 1)) {
+    if (index < (nb_value - 1))
         line = my_strduptil((*str), ',');
-        next++;
-    }
+    else
+        line = my_strduptil((*str), '\n');
+    next = (!my_strocc((*str), ',')) ? my_strlen(line) : my_strlen(line) + 2;
     array->type = get_value_type(line);
     init_array_value(line, array);
     (*str) += next;
+    free(line);
     return array;
 }

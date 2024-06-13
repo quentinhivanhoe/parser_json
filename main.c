@@ -6,6 +6,7 @@
 */
 #include "include/json.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int ac, char **av)
 {
@@ -16,5 +17,8 @@ int main(int ac, char **av)
     print_info(json);
     printf("\n\n");
     print_json(json);
+    free_json(json);
+    free(clean);
+    free(str);
     return ac;
 }

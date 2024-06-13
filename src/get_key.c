@@ -46,8 +46,8 @@ json_t *get_key(json_t *json, char *path)
     if (!json || !path)
         return NULL;
     key = my_strduptil(path, ':');
-    if (!my_strcmp(json->key, key, true)) {
-        next = my_strstr(path, ":", true) + 1;
+    if (!my_strcmp(json->key, key, false)) {
+        next = my_strstr(path, ":", false) + 1;
         if (!my_strocc(path, ':'))
             return get_node(json);
         else

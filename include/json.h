@@ -229,4 +229,8 @@ char *clean_str(char *str, char delim);
 /// @return the selected part
 char *str_select(char *str, char start, char end);
 
+/// @brief free the json object
+/// @param json the json obje to free
+void free_json(json_t *json);
+
 #endif /* !JSON_H_ */

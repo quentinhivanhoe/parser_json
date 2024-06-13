@@ -18,5 +18,6 @@ char *my_strappend(char *str, char c)
     my_strcpy(new_str, str);
     new_str[len] = c;
     new_str[len + 1] = '\0';
+    free(str);
     return new_str;
 }
