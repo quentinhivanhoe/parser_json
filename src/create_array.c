@@ -49,7 +49,7 @@ array_t *create_array(char **str, int nb_value, int index)
 
     if (!(*str))
         return NULL;
-    array = malloc(sizeof(array_t));
+    array = my_malloc(sizeof(array_t));
     line = my_strduptil((*str), '\n');
     next = my_strlen(line);
     if (index < (nb_value - 1)) {

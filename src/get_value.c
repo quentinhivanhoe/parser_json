@@ -97,7 +97,7 @@ json_t *get_array_value(json_t *node, char **str)
     value = str_select((*str), '\n', ']');
     nb_value = my_strocc(value, '\n');
     next = my_strstr((*str), "]", true) + 2;
-    node->array_value = malloc(sizeof(array_t *) * (nb_value + 1));
+    node->array_value = my_malloc(sizeof(array_t *) * (nb_value + 1));
     for (int i = 0; i < nb_value; i++)
         node->array_value[i] = create_array(&value, nb_value, i);
     node->array_value[nb_value] = NULL;
