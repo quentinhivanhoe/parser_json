@@ -1,3 +1,5 @@
 *json
 coding_style/
 push_that.sh
+*.a
+*.o

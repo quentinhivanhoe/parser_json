@@ -12,7 +12,6 @@ json_t *get_int_value(json_t *node, char **str)
     char *value = NULL;
     int next = 0;
 
-    my_printf("str : [%s]\n\n", (*str));
     if (!node || !(*str))
         return NULL;
     node->key = str_select((*str), '"', '"');
