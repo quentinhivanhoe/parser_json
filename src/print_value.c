@@ -24,7 +24,7 @@ void print_array(array_t **array, int depth)
         if (array[i]->type == STR)
             my_printf("\"%s\"", array[i]->str_value);
         if (array[i]->type == INT)
-            my_printf("\"%s\"", array[i]->int_value);
+            my_printf("%i", array[i]->int_value);
         if (array[i]->type == BOOL)
             print_bool(array[i]->bool_value);
         if (array[i + 1])

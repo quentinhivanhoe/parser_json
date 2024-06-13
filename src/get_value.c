@@ -12,15 +12,15 @@ json_t *get_int_value(json_t *node, char **str)
     char *value = NULL;
     int next = 0;
 
+    my_printf("str : [%s]\n\n", (*str));
     if (!node || !(*str))
         return NULL;
     node->key = str_select((*str), '"', '"');
-    value = str_select((*str), ':', ',');
     next = my_strstr((*str), "\n", true);
-    if (!value)
+    if (!my_strocc((*str), ','))
         value = str_select((*str), ':', '\n');
-    if (!value)
-        return NULL;
+    else if (!value)
+        value = str_select((*str), ':', ',');
     node->int_value = my_atoi(value);
     (*str) += (next + 1);
     return node;
