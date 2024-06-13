@@ -55,10 +55,10 @@ json_t *get_bool_value(json_t *node, char **str)
         return NULL;
     value = str_select((*str), ':', ',');
     node->key = str_select((*str), '"', '"');
-    if (!value)
+    if (!my_strocc((*str), ','))
         value = str_select((*str), ':', '\n');
-    if (!value)
-        return NULL;
+    else if (!value)
+        value = str_select((*str), ':', ',');
     next = my_strstr((*str), "\n", true);
     if (!my_strcmp(value, "true", true))
         node->bool_value = true;
