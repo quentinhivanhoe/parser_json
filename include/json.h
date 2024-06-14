@@ -166,12 +166,6 @@ int my_strcpy(char *dest, char *src);
 /// is returned
 int my_strcmp(char *s1, char *s2, bool sensitive);
 
-/// @brief append a new character at the end of string
-/// @param str the sting to append a char
-/// @param c the char to append
-/// @return the string with the char append
-char *my_strappend(char *str, char c);
-
 /// @brief compare two strings until nbyte
 /// @param s1 the first strings to compare
 /// @param s2 the second strings to compare
