@@ -21,7 +21,6 @@ void free_array(array_t **array)
 void free_json(json_t *json)
 {
     while (json) {
-        printf("[%s]\n", json->key);
         free(json->key);
         if (json->prev && (json->depth == json->prev->depth))
             free(json->prev);

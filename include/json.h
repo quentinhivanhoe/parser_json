@@ -9,6 +9,8 @@
     #define JSON_H_
     #include <stdbool.h>
 
+    #define BUFFER_SIZE 8192
+
 typedef enum node_type {
     ERROR = -1,
     JSON,
@@ -204,11 +206,6 @@ char *my_strduptil(char *str, char c);
 /// @return returns a new allocated string
 char *my_str_upper(char *str);
 
-/// @brief turn an alphanumeric string into lowercase
-/// @param str the string to change
-/// @return returns a new allocated string
-char *my_str_lower(char *str);
-
 /// @brief find a token in a string
 /// @param str the string to parse
 /// @param tok the token to found
@@ -232,5 +229,14 @@ char *str_select(char *str, char start, char end);
 /// @brief free the json object
 /// @param json the json obje to free
 void free_json(json_t *json);
+
+/// @brief create a json object
+/// @param pathname the path of the file
+/// @return a json object
+json_t *create_json(char *pathname);
+
+char *my_strconcat(char *s1, char *s2);
+
+void my_strcat(char *dest, char *s1, char *s2);
 
 #endif /* !JSON_H_ */

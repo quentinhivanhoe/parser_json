@@ -62,3 +62,23 @@ json_t *create_node(json_t *prev, char *str)
     node->next = create_node(node, str);
     return node;
 }
+
+json_t *create_json(char *pathname)
+{
+    char *content = NULL;
+    char *clean_content = NULL;
+    json_t *json = NULL;
+
+    if (!pathname)
+        return NULL;
+    content = my_getfile(pathname);
+    if (!content)
+        return NULL;
+    clean_content = clean_str(content, ' ');
+    if (!clean_content)
+        return NULL;
+    json = create_node(json, clean_content);
+    free(content);
+    free(clean_content);
+    return json;
+}
