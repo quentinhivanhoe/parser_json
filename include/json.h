@@ -9,8 +9,23 @@
     #define JSON_H_
     #include <stdbool.h>
 
+    // the size of the buffer for my_getfile
     #define BUFFER_SIZE 8192
 
+    // check if the char is a num
+    #define IS_NUM(char) (char > 47 && char < 58) ? (true) : (false)
+
+    // check if the char is a upper letter
+    #define IS_UPPER(char) (char > 64 && char < 91) ? (true) : (false)
+
+    // check if the char is a lower letter
+    #define IS_LOWER(char) (char > 96 && char < 123) ? (true) : (false)
+
+    // check if the char is a letter
+    #define IS_ALPHA(char) (IS_LOWER(char) || IS_UPPER(char)) ? (1) : (0)
+
+    // check if the char is alphanumerique character
+    #define IS_ALPHANUM(char) (IS_NUM(char) || IS_ALPHA(char)) ? (1) : (0)
 typedef enum node_type {
     ERROR = -1,
     JSON,
@@ -45,192 +60,225 @@ typedef struct get_value_s {
     json_t *(*get_func) (json_t *, char **);
 } get_value_t;
 
-/// @brief get the type of the value of the key
-/// @param str the key and the value
-/// @return the type
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a string and returns the type of the string
+/// @return returns a type between INT, STR, BOOL, JSON and ARRAY
+///////////////////////////////////////////////////////////////////////////////
 node_t get_value_type(char *str);
 
-/// @brief create node for js object
-/// @param str the string of the json
-/// @return json object
+///////////////////////////////////////////////////////////////////////////////
+/// @brief create a simple node of the total json
+/// @param str the json file stringify
+/// @return returns the json object or NULL in error case
+///////////////////////////////////////////////////////////////////////////////
 json_t *create_node(json_t *prev, char *str);
 
-/// @brief if the value is type of `INT` so it will get the value
-/// @param node the node to complete
-/// @param str the json stringify
-/// @return the current node
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a node of a json object, and the addresse of the json file
+/// stingified. get the value of type `INT` in the json stringify
+/// @return returns the current node
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_int_value(json_t *node, char **str);
 
-/// @brief if the value is type of `BOOL` so it will get the value
-/// @param node the node to complete
-/// @param str the json stringify
-/// @return the current node
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a node of a json object, and the addresse of the json file
+/// stingified. get the value of type `BOOL` in the json stringify
+/// @return returns the current node
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_bool_value(json_t *node, char **str);
 
-/// @brief if the value is type of `STR` so it will get the value
-/// @param node the node to complete
-/// @param str the json stringify
-/// @return the current node
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a node of a json object, and the addresse of the json file
+/// stingified. get the value of type `STR` in the json stringify
+/// @return returns the current node
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_str_value(json_t *node, char **str);
 
-/// @brief if the value is type of `ARRAY` so it will get the value
-/// @param node the nod eto complete
-/// @param str the json stringify
-/// @return the current node
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a node of a json object, and the addresse of the json file
+/// stingified. get the value of type `ARRAY` in the json stringify
+/// @return returns the current node
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_array_value(json_t *node, char **str);
 
-/// @brief nklsqcnl c
-/// @param str c,ncsn,;cdns
-/// @param nb_value ,klcldq,ldc
-/// @param index njljqcnckl
-/// @return nknlcdnlkcds,
-array_t *create_array(char **str, int nb_value, int index);
-
-/// @brief ahjajhjdnjnjkns
-/// @param json ,qdcsncdslkndcsjkndscjk
-void pretty_printer_test(json_t *json);
-
-/// @brief d
-/// @param node d
-/// @param str d
-/// @return d
+///////////////////////////////////////////////////////////////////////////////
+/// @brief take a node of a json object, and the addresse of the json file
+/// stingified. get the value of type `JSON` in the json stringify
+/// @return returns the current node
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_json_value(json_t *node, char **str);
 
-/// @brief print info about the json object
-/// @param json the json object
+///////////////////////////////////////////////////////////////////////////////
+/// @brief create an array object
+/// @param str the value in of the array in the json file stringified
+/// @return returns an array object
+///////////////////////////////////////////////////////////////////////////////
+array_t *create_array(char **str);
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief print all key and they type, also indentation is equal at their
+/// depth (2 space = depth 0)
+///////////////////////////////////////////////////////////////////////////////
 void print_info(json_t *json);
 
-/// @brief print the json object
-/// @param json the json object
+///////////////////////////////////////////////////////////////////////////////
+/// @brief print all of the json object in the json file format
+///////////////////////////////////////////////////////////////////////////////
 void print_json(json_t *json);
 
 
-/// @brief print value of the json object
-/// @param json the json object
+///////////////////////////////////////////////////////////////////////////////
+/// @brief print the value of a json node
+///////////////////////////////////////////////////////////////////////////////
 void print_value(json_t *json);
 
-/// @brief d
-/// @param node d
-/// @param type d
+///////////////////////////////////////////////////////////////////////////////
+/// @brief initialize the value of the json nod egivane in arguments
+///////////////////////////////////////////////////////////////////////////////
 void init_value(json_t *node);
 
-/// @brief d
-/// @param json d
-/// @param path d
-/// @return d
+///////////////////////////////////////////////////////////////////////////////
+/// @brief get the value of a key in the json object
+/// @param path the path to tha value, imagine we have json like that
+/// `"toto" : { "tutu" : "titi"`...  the path will be `toto:tutu`
+/// @return returns a the node of the json object that link with the path
+/// @note it's just copy the node returnd is not linked at another node
+/// of the main json object
+///////////////////////////////////////////////////////////////////////////////
 json_t *get_key(json_t *json, char *path);
 
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief get the content of the file
 /// @param pathname the path/name of the file
-/// @return the content of the file
+/// @return returns the content of the file into a string
+///////////////////////////////////////////////////////////////////////////////
 char *my_getfile(char *pathname);
 
+///////////////////////////////////////////////////////////////////////////////
 /// @brief transform a string into a number
-/// @param str the string to transform
-/// @return the string into a number
+/// @return returns the string into a number, if the string is NULL
+/// -INT_MAX is returned
+///////////////////////////////////////////////////////////////////////////////
 int my_atoi(char *str);
 
-    // check if the char is a num
-    #define IS_NUM(char) (char > 47 && char < 58) ? (true) : (false)
-
-    // check if the char is a upper letter
-    #define IS_UPPER(char) (char > 64 && char < 91) ? (true) : (false)
-
-    // check if the char is a lower letter
-    #define IS_LOWER(char) (char > 96 && char < 123) ? (true) : (false)
-
-    // check if the char is a letter
-    #define IS_ALPHA(char) (IS_LOWER(char) || IS_UPPER(char)) ? (1) : (0)
-
-    // check if the char is alphanumerique character
-    #define IS_ALPHANUM(char) (IS_NUM(char) || IS_ALPHA(char)) ? (1) : (0)
-
+///////////////////////////////////////////////////////////////////////////////
 /// @brief count the len of a string
-/// @param str the string to be counter
-/// @return return the len of the string
+/// @return return the len of the string, if the string is NULL 0 is returned
+///////////////////////////////////////////////////////////////////////////////
 int my_strlen(char *str);
 
-/// @brief copy a string into a another
-/// @param dest the destination to copy
-/// @param src the source to be copied
-/// @return the number of bytes copied
-/// @note don't forget the null byte in the size of dest
+///////////////////////////////////////////////////////////////////////////////
+/// @brief copy the a string (src) into antother (dest)
+/// @param dest the place to copy in
+/// @param src the string to copy
+/// @return returns the number of byte copied
+/// @note `dest` should have the suffisant place to copy in
+///////////////////////////////////////////////////////////////////////////////
 int my_strcpy(char *dest, char *src);
 
-/// @brief compare two strings and chek if there are the same
-/// @param s1 the first string to compare
-/// @param s2 the second string to compare
-/// @param sensitive precise if the case is sensitive or not
-/// @return negative number if s1 < s2 and positive number in other case
-/// @note if s1 == NULL, INT_MAX is returned and if s2 == NULL, -INT_MAX
-/// is returned
+///////////////////////////////////////////////////////////////////////////////
+/// @brief  compare two strings character by character
+/// @param sensitive active the sensitive case if it's true, if it's false
+/// capitalize the two strings and compare them
+/// @return returns 0 if the two strings are equal
+/// a negative number if s2 > s1 and a positive number if s1 > s2
+/// @note if s1 is NULL INT_MAX is returned else if s2 is NULL -INT_MAX is
+/// returned
+///////////////////////////////////////////////////////////////////////////////
 int my_strcmp(char *s1, char *s2, bool sensitive);
 
-/// @brief compare two strings until nbyte
-/// @param s1 the first strings to compare
-/// @param s2 the second strings to compare
-/// @param nbyte the number of byte to compare
-/// @param sensitive precise if the case is sensitive or not
-/// @return 0 if the two stings is the same,
-///         negative number if s2 > s1
-///         positive number if s1 > s2
+///////////////////////////////////////////////////////////////////////////////
+/// @brief  compare n character of two strings character by character
+/// @param nbyte the number of character to compare
+/// @param sensitive active the sensitive case if its true, if it's false
+/// capitalize the two strings and do a simple my_strcmp
+/// @return returns 0 if the two strings are equal
+/// a negative number if s2 > s1 and a positive number if s1 > s2
+/// @note if s1 is NULL INT_MAX is returned else if s2 is NULL -INT_MAX is
+/// returned
+///////////////////////////////////////////////////////////////////////////////
 int my_strncmp(char *s1, char *s2, int nbyte, bool sensitive);
 
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief count the occurences of a character in a string
-/// @param str the string to parse
-/// @param c the charactere to count the occurences
-/// @return the occurences of c
+/// @return returns the occurences the character
+///////////////////////////////////////////////////////////////////////////////
 int my_strocc(char *str, char c);
 
-/// @brief copy a string until a character
-/// @param dest the palce to copy the string
-/// @param src the string to be copied
-/// @param c the character to copy until
+///////////////////////////////////////////////////////////////////////////////
+/// @brief copy a string (src) into antother (dest) until he finds
+/// character c
+/// @param dest the place to copy in
+/// @param src the string to copy
 /// @return returns the number of byte copied
+/// @note `dest` should have the suffisant place to copy in
+///////////////////////////////////////////////////////////////////////////////
 int my_strcpytil(char *dest, char *src, char c);
 
+///////////////////////////////////////////////////////////////////////////////
 /// @brief duplicate a string until a character
-/// @param str the string to parse
-/// @param c the end character
-/// @return a pointer to the new string allocated
+/// @return returns a pointer to the new string allocated
+///////////////////////////////////////////////////////////////////////////////
 char *my_strduptil(char *str, char c);
 
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief turn an alphanumeric string into upper char
-/// @param str the string to change
-/// @return returns a new allocated string
+/// @return returns a pointer to the new allocated string
+///////////////////////////////////////////////////////////////////////////////
 char *my_str_upper(char *str);
 
+///////////////////////////////////////////////////////////////////////////////
 /// @brief find a token in a string
-/// @param str the string to parse
-/// @param tok the token to found
-/// @param sensitive sensitive
-/// @return true if tok is in, else false
+/// @param sensitive active the sensitive case if it's true, if it's false
+/// capitalize the two strings
+/// @return returns the index of the token, returns -1 in error case
+///////////////////////////////////////////////////////////////////////////////
 int my_strstr(char *str, char *tok, bool sensitive);
 
-/// @brief clean a string
-/// @param str the string to parse
-/// @param delim the element to delete
-/// @return a cleaned string
+///////////////////////////////////////////////////////////////////////////////
+/// @brief duplicate the string without delim
+/// @return returns a pointer to the new string
+///////////////////////////////////////////////////////////////////////////////
 char *clean_str(char *str, char delim);
 
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief duplicate a part of string
-/// @param str the string to duplicate
 /// @param start the start of the part
 /// @param end the end of the part
-/// @return the selected part
+/// @return returns a pointer to the new string
+/// @note if start is not in the string it will start a the begining of the
+/// string. If end is not in it will duplicate until the null byte
+///////////////////////////////////////////////////////////////////////////////
 char *str_select(char *str, char start, char end);
 
+
+///////////////////////////////////////////////////////////////////////////////
 /// @brief free the json object
-/// @param json the json obje to free
+///////////////////////////////////////////////////////////////////////////////
 void free_json(json_t *json);
 
+///////////////////////////////////////////////////////////////////////////////
 /// @brief create a json object
-/// @param pathname the path of the file
-/// @return a json object
+/// @param pathname the path to the file
+/// @return returns a json object
+///////////////////////////////////////////////////////////////////////////////
 json_t *create_json(char *pathname);
 
+///////////////////////////////////////////////////////////////////////////////
+/// @brief alloc a new string and concatenate s1 and s2 in it
+/// @return returns the pointer to the new strings
+///////////////////////////////////////////////////////////////////////////////
 char *my_strconcat(char *s1, char *s2);
 
+
+///////////////////////////////////////////////////////////////////////////////
+/// @brief concatenate s1 and s2 in dest
+/// @note dest must have the place to concatenate s1 and s2
+///////////////////////////////////////////////////////////////////////////////
 void my_strcat(char *dest, char *s1, char *s2);
 
 #endif /* !JSON_H_ */

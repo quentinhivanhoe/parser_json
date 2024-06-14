@@ -26,7 +26,7 @@ void array_is_bool(char *value, array_t *array)
 {
     array->str_value = NULL;
     array->int_value = 0;
-    if (!my_strcmp(value, "true", false))
+    if (!my_strcmp(value, "true", true))
         array->bool_value = true;
     else
         array->bool_value = false;
@@ -42,7 +42,7 @@ void init_array_value(char *value, array_t *array)
         array_is_bool(value, array);
 }
 
-array_t *create_array(char **str, int nb_value, int index)
+array_t *create_array(char **str)
 {
     char *line = NULL;
     array_t *array = NULL;
@@ -51,7 +51,7 @@ array_t *create_array(char **str, int nb_value, int index)
     if (!(*str))
         return NULL;
     array = malloc(sizeof(array_t));
-    if (index < (nb_value - 1))
+    if (my_strocc((*str), ','))
         line = my_strduptil((*str), ',');
     else
         line = my_strduptil((*str), '\n');

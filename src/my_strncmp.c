@@ -20,7 +20,7 @@ static int sensitive_case(char *s1, char *s2, int nbyte)
         return -__INT_MAX__;
     tmp1 = my_str_upper(s1);
     tmp2 = my_str_upper(s2);
-    res = my_strncmp(tmp1, tmp2, nbyte, false);
+    res = my_strncmp(tmp1, tmp2, nbyte, true);
     free(tmp1);
     free(tmp2);
     return res;
@@ -32,7 +32,7 @@ int my_strncmp(char *s1, char *s2, int nbyte, bool sensitive)
         return __INT_MAX__;
     if (!s2)
         return -__INT_MAX__;
-    if (sensitive)
+    if (!sensitive)
         return sensitive_case(s1, s2, nbyte);
     if ((my_strlen(s1) < nbyte) || (my_strlen(s2) < nbyte))
         return my_strlen(s1) - my_strlen(s2);
